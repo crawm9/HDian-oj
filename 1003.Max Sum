@@ -22,7 +22,8 @@ Case 1:
 
 Case 2:
 7 1 6
-code:
+//比较重要的是求最大子序列和，以及记录起与结束的位置
+//code
 #include<stdio.h>
 #define LEN 100000
 typedef struct sum{
