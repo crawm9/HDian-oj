@@ -1,0 +1,72 @@
+Problem Description
+Contest time again! How excited it is to see balloons floating around. But to tell you a secret, the judges' favorite time is guessing the most popular problem. When the contest is over, they will count the balloons of each color and find the result.
+
+This year, they decide to leave this lovely job to you.
+ 
+
+Input
+Input contains multiple test cases. Each test case starts with a number N (0 < N <= 1000) -- the total number of balloons distributed. The next N lines contain one color each. The color of a balloon is a string of up to 15 lower-case letters.
+
+A test case with N = 0 terminates the input and this test case is not to be processed.
+ 
+
+Output
+For each case, print the color of balloon for the most popular problem on a single line. It is guaranteed that there is a unique solution for each test case.
+ 
+
+Sample Input
+5
+green
+red
+blue
+red
+red
+3
+pink
+orange
+pink
+0
+ 
+
+Sample Output
+red
+pink
+//需要注意的是，如果有两种颜色都是最多，那么这两种都要记录且输出
+//code
+#include<stdio.h>
+#include<string.h>
+#define NUM 1000
+int main()
+{
+    int find;
+    int k = 0;
+    int m, i, j;
+    char arr[NUM][15];
+    int num[NUM];
+    char mem[NUM][15];
+    while(scanf("%d",&m),m > 0)
+    {
+        find = 0;
+        for(i = 0; i < m; i++)
+            scanf("%s",arr[i]);
+        for(i = 0; i < m; i++)//统计每种颜色的数目
+        {
+            num[i] = 1;
+            for(j = i + 1; j < m; j++)
+                if(strcmp(arr[i],arr[j]) == 0)
+                    num[i]++;
+        }
+        for(i = 0 ; i< m; i++)//找出最多数
+            if(num[i] > find)
+                find = num[i];
+        for(i = 0; i < m; i++)//记录最多颜色
+            if(num[i] == find)
+                strcpy(mem[k++],arr[i]);
+    }
+    for(i = 0; i < k; i++)
+        printf("%s\n",mem[i]);
+
+    getchar();
+    getchar();
+    return 0;
+}
